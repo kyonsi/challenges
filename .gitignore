@@ -1,9 +1,32 @@
-# Logs
-logs
+
+# Created by https://www.gitignore.io/api/react,visualstudiocode
+# Edit at https://www.gitignore.io/?templates=react,visualstudiocode
+
+### react ###
+.DS_*
 *.log
-npm-debug.log*
+logs
+**/*.backup.*
+**/*.back.*
 
-# Dependency directories
 node_modules
+bower_components
 
-build
+*.sublime*
+
+psd
+thumb
+sketch
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+
+# End of https://www.gitignore.io/api/react,visualstudiocode
