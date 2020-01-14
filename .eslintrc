@@ -22,7 +22,25 @@
     "plugin:prettier/recommended",
     "prettier/@typescript-eslint"
   ],
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "webpack.config.js"
+      }
+    }
+  },
   "rules": {
+    "import/resolver": {
+      "node": {
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".json",
+          ".ts",
+          ".tsx"
+        ]
+      }
+    },
     "prettier/prettier": 2,
     "arrow-body-style": [
       2,

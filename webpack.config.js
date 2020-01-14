@@ -1,26 +1,24 @@
 const path = require('path');
-
-var isProduction = process.argv.indexOf('-p') >= 0 || process.env.NODE_ENV === 'production';
-var sourcePath = path.join(__dirname, './src');
-var contentBase = path.join(__dirname, './public');
+const isProduction = process.argv.indexOf('-p') >= 0 || process.env.NODE_ENV === 'production';
+const sourcePath = path.join(__dirname, './src');
+const contentBase = path.join(__dirname, './public');
 
 const config = {
   context: sourcePath,
   entry: './index.tsx',
   externals: {
-    "react": "React",
-    "react-dom": "ReactDOM"
-},
+    react: 'React',
+    'react-dom': 'ReactDOM'
+  },
   output: {
     filename: '[name].js',
     path: contentBase,
-    publicPath: 'public',
+    publicPath: 'public'
   },
-  mode: "development",
+  mode: 'development',
   target: 'web',
-  devtool: 'inline-source-map',
   devServer: {
-    contentBase: contentBase,
+    contentBase,
     hot: true,
     inline: true,
     historyApiFallback: {
@@ -36,14 +34,13 @@ const config = {
         test: /\.tsx?$/,
         use: [
           !isProduction && {
-            loader: 'babel-loader',
-            options: { plugins: ['react-hot-loader/babel'] }
+            loader: 'babel-loader'
           },
           'ts-loader'
         ].filter(Boolean)
       }
-    ],
-  },
+    ]
+  }
 };
 
 module.exports = config;
