@@ -6,14 +6,17 @@ const contentBase = path.join(__dirname, './public');
 const config = {
   context: sourcePath,
   entry: './index.tsx',
-  externals: {
-    react: 'React',
-    'react-dom': 'ReactDOM'
-  },
   output: {
-    filename: '[name].js',
-    path: contentBase,
-    publicPath: 'public'
+    filename: './build/main.js',
+  },
+  resolve: {
+    extensions: ['.js', '.ts', '.tsx'],
+    // Fix webpack's default behavior to not load packages with jsnext:main module
+    // (jsnext:main directs not usually distributable es6 format, but es6 sources)
+    mainFields: ['module', 'browser', 'main'],
+    alias: {
+      "~": path.resolve(__dirname, 'src/')
+    }
   },
   mode: 'development',
   target: 'web',
@@ -34,9 +37,11 @@ const config = {
         test: /\.tsx?$/,
         use: [
           !isProduction && {
-            loader: 'babel-loader'
+            loader: 'babel-loader',
+            options: {
+              babelrc: true
+            }
           },
-          'ts-loader'
         ].filter(Boolean)
       }
     ]
