@@ -7,7 +7,8 @@ const config = {
   context: sourcePath,
   entry: './index.tsx',
   output: {
-    filename: './build/main.js',
+    path: contentBase,
+    filename: './build/main.js'
   },
   resolve: {
     extensions: ['.js', '.ts', '.tsx'],
@@ -15,10 +16,9 @@ const config = {
     // (jsnext:main directs not usually distributable es6 format, but es6 sources)
     mainFields: ['module', 'browser', 'main'],
     alias: {
-      "~": path.resolve(__dirname, 'src/')
+      '~': path.resolve(__dirname, 'src/')
     }
   },
-  mode: 'development',
   target: 'web',
   devServer: {
     contentBase,
@@ -42,7 +42,10 @@ const config = {
               babelrc: true
             }
           },
-        ].filter(Boolean)
+          {
+            loader: 'ts-loader'
+          }
+        ]
       }
     ]
   }
